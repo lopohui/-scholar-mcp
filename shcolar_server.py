@@ -7,7 +7,7 @@ from loguru import logger
 from mcp.server.fastmcp import FastMCP
 
 # 初始化 MCP Server
-#mcp = FastMCP("Scholar Search Service")
+mcp = FastMCP("Scholar Search Service")
 
 from utils import bibtex_to_gbt7714
 
