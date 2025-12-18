@@ -7,7 +7,7 @@ from loguru import logger
 from mcp.server.fastmcp import FastMCP
 
 # 初始化 MCP Server
-mcp = FastMCP("Scholar Search Service")
+#mcp = FastMCP("Scholar Search Service")
 
 from utils import bibtex_to_gbt7714
 
@@ -136,10 +136,10 @@ class Scholar:
 
 # --- 实例化全局 Scholar 对象 ---
 # 建议在运行 MCP 时通过环境变量配置 key
-API_KEY = os.environ.get("SCHOLAR_API_KEY", "") 
-BASE_URL = os.environ.get("SCHOLAR_BASE_URL", "https://api.semanticscholar.org")
+#API_KEY = os.environ.get("SCHOLAR_API_KEY", "") 
+#BASE_URL = os.environ.get("SCHOLAR_BASE_URL", "https://api.semanticscholar.org")
 
-scholar_client = Scholar(api_key=API_KEY, base_url=BASE_URL)
+#scholar_client = Scholar(api_key=API_KEY, base_url=BASE_URL)
 
 # --- MCP 工具定义 ---
 
@@ -152,6 +152,7 @@ def search_academic_papers(query: str, limit: int = 5) -> str:
         query: The search query (e.g., "3D Human Pose Estimation")
         limit: Number of results to return (default 5)
     """
+    scholar_client = Scholar(api_key="", base_url="https://api.semanticscholar.org")
     results = scholar_client.search_papers(query, limit=limit)
     return json.dumps(results, ensure_ascii=False, indent=2)
 
@@ -164,6 +165,7 @@ def get_paper_references_analysis(title: str) -> str:
     Args:
         title: The exact or partial title of the paper.
     """
+    scholar_client = Scholar(api_key="", base_url="https://api.semanticscholar.org")
     result = scholar_client.get_references_info(title)
     return json.dumps(result, ensure_ascii=False, indent=2)
 
@@ -175,15 +177,16 @@ def get_paper_details(paper_id: str) -> str:
     Args:
         paper_id: The Semantic Scholar ID or DOI (e.g., "10.1109/CVPR.2020.00000")
     """
+    scholar_client = Scholar(api_key="", base_url="https://api.semanticscholar.org")
     result = scholar_client.get_paper_details(paper_id)
     return json.dumps(result, ensure_ascii=False, indent=2)
 
 # --- 服务器入口 ---
-if __name__ == "__main__":
+#if __name__ == "__main__":
     # 打印启动提示
-    logger.info("正在启动 Scholar MCP Server (SSE 模式)...")
-    logger.info("SSE 访问地址: http://0.0.0.0:8000/sse")
+#    logger.info("正在启动 Scholar MCP Server (SSE 模式)...")
+#    logger.info("SSE 访问地址: http://0.0.0.0:8000/sse")
 
     # 启动 SSE 服务
     # FastMCP 默认在 transport='sse' 时会使用 uvicorn 启动
-    mcp.run(transport='sse')
+#    mcp.run(transport='sse')
