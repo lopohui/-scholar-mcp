@@ -4,7 +4,7 @@ import time
 import os
 from typing import List, Dict, Any
 from loguru import logger
-from mcp.server.fastmcp import FastMCP
+from fastmcp import FastMCP
 
 # 初始化 MCP Server
 mcp = FastMCP("Scholar Search Service")
