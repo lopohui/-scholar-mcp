@@ -143,7 +143,7 @@ class Scholar:
 
 # --- MCP 工具定义 ---
 
-@mcp.tool()
+@mcp.tool
 def search_academic_papers(query: str, limit: int = 5) -> str:
     """
     Search for academic papers by keyword.
@@ -156,7 +156,7 @@ def search_academic_papers(query: str, limit: int = 5) -> str:
     results = scholar_client.search_papers(query, limit=limit)
     return json.dumps(results, ensure_ascii=False, indent=2)
 
-@mcp.tool()
+@mcp.tool
 def get_paper_references_analysis(title: str) -> str:
     """
     Find a paper by title and get detailed information about its references,
@@ -169,7 +169,7 @@ def get_paper_references_analysis(title: str) -> str:
     result = scholar_client.get_references_info(title)
     return json.dumps(result, ensure_ascii=False, indent=2)
 
-@mcp.tool()
+@mcp.tool
 def get_paper_details(paper_id: str) -> str:
     """
     Get detailed metadata for a specific paper using its ID or DOI.
